@@ -13,5 +13,6 @@ class Category extends Model
         ->withPivot([
             'created_by',
             'updated_by',
-        ]);    }
+        ]);    
+    }
 }

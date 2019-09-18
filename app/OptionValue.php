@@ -23,6 +23,11 @@ class OptionValues extends Model
      */
     public function productOptions()
     {
-        return $this->belongsToMany(ProductOption::class);
+        return $this->belongsToMany(ProductOption::class, 'product_option_option_values')
+        ->using('App\ProductOptionsOptionValues')
+        ->withPivot([
+            'created_by',
+            'updated_by',
+        ]);
     }
 }
