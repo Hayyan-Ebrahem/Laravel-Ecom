@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OptionValues extends Model
+class OptionValue extends Model
 {
     protected $fillable = [
         'value'

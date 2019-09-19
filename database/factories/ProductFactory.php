@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use Faker\Generator as Faker;
@@ -18,6 +19,10 @@ $factory->define(Product::class, function (Faker $faker) {
         'status' => $faker->numberBetween(0,1),
         'category_id' => function(){
             return Category::all()->random();
+        },
+
+        'brand_id' => function(){
+            return Brand::all()->random();
         }
     ];
    
