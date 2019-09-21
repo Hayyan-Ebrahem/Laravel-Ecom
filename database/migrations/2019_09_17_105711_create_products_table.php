@@ -16,7 +16,6 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('brand_id');
-            $table->unsignedBigInteger('category_id');
             $table->string('sku');
             $table->string('name');
             $table->string('stock_code')->nullable(); //It should be a valid code in inventory module.

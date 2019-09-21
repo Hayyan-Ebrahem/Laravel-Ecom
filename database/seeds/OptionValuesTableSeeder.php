@@ -36,14 +36,15 @@ class OptionValuesTableSeeder extends Seeder
         ]);
 
         factory(OptionValue::class)->create([
-            'value' => 'yellow',
+            'value' => 'blue',
             'option_id' => $color->id
         ]);
 
         factory(OptionValue::class)->create([
-            'value' => 'blue',
+            'value' => 'green',
             'option_id' => $color->id
         ]);
+
 
     }
 }

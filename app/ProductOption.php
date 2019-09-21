@@ -6,12 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductOption extends Model
 {
-    protected $fillable = [
-        'quantity',
-        'price',
-        'sale_price',
-        'default'
-    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -28,11 +28,8 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product')
-        ->using('App\CategoryProduct')
-        ->withPivot([
-            'created_by',
-            'updated_by',
-        ]);
+        ->using('CategoryProduct');
+
 
     }
 
