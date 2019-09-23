@@ -29,8 +29,6 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_product')
         ->using('CategoryProduct');
-
-
     }
 
     public function tag()
