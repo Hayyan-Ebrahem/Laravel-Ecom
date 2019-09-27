@@ -15,6 +15,16 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('customer_id')->unsigned()->index();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->integer('order_status_id')->unsigned()->index();
+            $table->foreign('order_status_id')->references('id')->on('order_statuses');
+            $table->string('payment');
+            $table->decimal('discounts')->default(0.00);
+            $table->decimal('tax')->default(0.00);
+            $table->decimal('total');
+            $table->decimal('total_paid')->default(0.00);
+            $table->string('invoice')->nullable();
             $table->timestamps();
         });
     }
