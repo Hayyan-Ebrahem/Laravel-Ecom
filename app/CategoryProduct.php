@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class CategoryProduct extends Pivot
 {
-    protected $dates = ['completed_at'];
+    
+    public $lable= 'xxxx';
+
+    protected $primaryKey = ['category_id', 'product_id'];
+
 }

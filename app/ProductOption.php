@@ -6,12 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductOption extends Model
 {
-    protected $fillable = [
-        'quantity',
-        'price',
-        'sale_price',
-        'default'
-    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -26,6 +20,11 @@ class ProductOption extends Model
      */
     public function optionsValues()
     {
-        return $this->belongsToMany(OptionValue::class);
+        return $this->belongsToMany(OptionValues::class, 'product_option_option_values')
+        ->using('App\ProductOptionsOptionValues')
+        ->withPivot([
+            'created_by',
+            'updated_by',
+        ]);    
     }
 }

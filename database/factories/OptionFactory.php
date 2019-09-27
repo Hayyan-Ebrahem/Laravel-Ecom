@@ -14,6 +14,6 @@ $factory->define(Option::class, function (Faker $faker) {
     ]);
 
     return [
-        'value' => $name,
+        'name' => $name,
     ];
 });
