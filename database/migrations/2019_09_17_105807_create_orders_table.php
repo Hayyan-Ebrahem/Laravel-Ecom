@@ -14,11 +14,9 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id')->unsigned()->index();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('customer_id')->index();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->integer('order_status_id')->unsigned()->index();
-            $table->foreign('order_status_id')->references('id')->on('order_statuses');
             $table->string('payment');
             $table->decimal('discounts')->default(0.00);
             $table->decimal('total_products');

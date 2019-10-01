@@ -1,8 +1,6 @@
 <?php
 
-use App\Product;
-use App\ProductOption;
-use App\ProductOptionsOptionValues;
+use App\Models\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

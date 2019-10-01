@@ -1,7 +1,7 @@
 <?php
 
-use App\Option;
-use App\OptionValue;
+use App\Models\Option;
+use App\Models\OptionValue;
 use Illuminate\Database\Seeder;
 
 class OptionValuesTableSeeder extends Seeder

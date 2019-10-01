@@ -1,6 +1,6 @@
 <?php
 
-use App\Option;
+use App\Models\Option;
 use Illuminate\Database\Seeder;
 
 class OptionsTableSeeder extends Seeder
