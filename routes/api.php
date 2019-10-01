@@ -1,8 +1,12 @@
 <?php
 
+<<<<<<< HEAD
 use App\Product;
 use App\ProductOption;
 use App\ProductOptionsOptionValues;
+=======
+use App\Models\ProductOption;
+>>>>>>> master
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +25,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+<<<<<<< HEAD
 // Route::get('/products', function (){
 //     return ProductOption::with('option')->get();
 // });
+=======
+Route::get('/products', function (){
+    return ProductOption::with('option')->get();
+});
+>>>>>>> master

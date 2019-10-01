@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Brand;
+=======
+use App\Models\Brand;
+>>>>>>> master
 use Illuminate\Database\Seeder;
 
 class BrandsTableSeeder extends Seeder

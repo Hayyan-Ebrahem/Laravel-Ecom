@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Option;
+=======
+use App\Models\Option;
+>>>>>>> master
 use Illuminate\Database\Seeder;
 
 class OptionsTableSeeder extends Seeder

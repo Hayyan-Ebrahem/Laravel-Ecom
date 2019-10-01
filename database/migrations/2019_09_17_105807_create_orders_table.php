@@ -15,10 +15,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+<<<<<<< HEAD
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->string('payment');
             $table->decimal('discounts')->default(0.00);
+=======
+            $table->unsignedBigInteger('customer_id')->index();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('payment');
+            $table->decimal('discounts')->default(0.00);
+            $table->decimal('total_products');
+>>>>>>> master
             $table->decimal('tax')->default(0.00);
             $table->decimal('total');
             $table->timestamps();

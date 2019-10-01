@@ -2,9 +2,14 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+<<<<<<< HEAD
 use App\Brand;
 use App\Category;
 use App\Product;
+=======
+use App\Models\Brand;
+use App\Models\Product;
+>>>>>>> master
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
