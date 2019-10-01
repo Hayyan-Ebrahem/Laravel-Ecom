@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('quantity');
             $table->decimal('price');
-            $table->decimal('sale_price')->nullable()->after('price');
+            $table->decimal('sale_price')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
 
