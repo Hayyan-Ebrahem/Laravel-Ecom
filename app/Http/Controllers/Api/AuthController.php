@@ -30,7 +30,7 @@ class AuthController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken('AppName')->accessToken;
+        $success['token'] =  $user->createToken('Laracom')->accessToken;
         return response()->json(['success' => $success], $this->successStatus);
     }
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('AppName')->accessToken;
+            $success['token'] =  $user->createToken('Laracom')->accessToken;
             return response()->json(['success' => $success], $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
