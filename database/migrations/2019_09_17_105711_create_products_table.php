@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('quantity');
             $table->decimal('price');
-            $table->integer('status')->default(0);
+            $table->boolean('active')->default(true);
             $table->timestamps();
 
             $table->foreign('brand_id')

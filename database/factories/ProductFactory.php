@@ -4,6 +4,7 @@
 
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Category;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
@@ -15,11 +16,11 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->paragraph,
         'quantity' => $faker->randomDigitNotNull(1, 50),
         'price' => $faker->randomDigitNotNull(1.00, 500.00),
-        'status' => $faker->numberBetween(0,1),
-
+        'active' => (bool)random_int(0,1),
         'brand_id' => function(){
             return Brand::all()->random();
-        }
+        },
+
     ];
    
 });

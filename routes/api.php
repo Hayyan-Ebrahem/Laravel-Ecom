@@ -14,14 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::prefix('v1')->group(function(){
+Route::prefix('v1')->group(function () {
     Route::post('login', 'Api\AuthController@login');
     Route::post('register', 'Api\AuthController@register');
-    Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('getUser', 'Api\AuthController@getUser');
+
+    Route::namespace('Api')->group(function () {
+        Route::apiresource('products', 'ProductController');
+        Route::get('remove-image-product', 'ProductController@removeImage')->name('product.remove.image');
+        Route::get('remove-image-thumb', 'ProductController@removeThumbnail')->name('product.remove.thumb');
     });
-   });
+
+    Route::group(['middleware' => 'auth:api'], function () {
+
+        Route::post('getUser', 'Api\AuthController@getUser');
+    });
+});
