@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Products;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +10,24 @@ use App\Http\Resources\Product\ProductResource;
 
 class ProductController extends Controller
 {
+
+
+    public function recommended(Request $request, ProductCriteria $productCriteria, BasketCriteriaInterface $baskets)
+    {
+        $request->validate([
+            'basket_id' => 'required|hashid_is_valid:baskets',
+        ]);
+
+        $basket = $baskets->id($request->basket_id)->first();
+
+        $products = $basket->lines->map(function ($line) {
+            return $line->variant->product_id;
+        })->toArray();
+
+        $products = app('api')->products()->getRecommendations($products);
+
+        return new ProductRecommendationCollection($products);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -15,17 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
-    Route::post('login', 'Api\AuthController@login');
-    Route::post('register', 'Api\AuthController@register');
+    // Route::post('login', 'Api\AuthController@login');
+    // Route::post('register', 'Api\AuthController@register');
+    // Route::post('logout', 'Api\AuthController@logout');
 
-    Route::namespace('Api')->group(function () {
+
+    Route::namespace('Api\Products')->group(function () {
         Route::apiresource('products', 'ProductController');
+        // Route::('products/recommended', 'Products\ProductController@recommended');
+
         Route::get('remove-image-product', 'ProductController@removeImage')->name('product.remove.image');
         Route::get('remove-image-thumb', 'ProductController@removeThumbnail')->name('product.remove.thumb');
     });
 
-    Route::group(['middleware' => 'auth:api'], function () {
+    // Route::group(['middleware' => 'auth:api'], function () {
 
-        Route::post('getUser', 'Api\AuthController@getUser');
-    });
+    //     Route::post('getUser', 'Api\AuthController@getUser');
+    // });
 });

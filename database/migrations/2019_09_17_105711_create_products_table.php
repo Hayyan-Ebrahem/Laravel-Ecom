@@ -21,8 +21,17 @@ class CreateProductsTable extends Migration
             $table->string('stock_code')->nullable(); //It should be a valid code in inventory module.
             $table->text('description')->nullable();
             $table->integer('quantity');
-            $table->decimal('price');
             $table->boolean('active')->default(true);
+            $table->boolean('availability')->default(true);
+            $table->string('reviews')->nullable();
+            $table->integer('rating')->nullable();
+            $table->tinyInteger('is_taxable')->nullable()->default(null);
+            $table->decimal('price', 10, 6)->nullable()->default(null);
+            $table->decimal('cost_price', 10, 6)->nullable()->default(null);
+            $table->float('weight')->nullable()->default(null);
+            $table->float('width')->nullable()->default(null);
+            $table->float('height')->nullable()->default(null);
+            $table->float('length')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('brand_id')

@@ -30,7 +30,7 @@ class AuthController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken('Laracom')->accessToken;
+        $success['token'] =  $user->createToken(request['client'])->accessToken;
         return response()->json(['success' => $success], $this->successStatus);
     }
 
@@ -39,16 +39,21 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('Laracom')->accessToken;
+            $success['token'] =  $user->createToken(request('client'))->accessToken;
             return response()->json(['success' => $success], $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
 
-    public function getUser()
-    {
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this->successStatus);
+    public function logout (Request $request) {
+
+        $token = $request->user()->token();
+        dd($token);
+        $token->revoke();
+    
+        $response = 'You have been succesfully logged out!';
+        return response($response, 200);
+    
     }
 }
