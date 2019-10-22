@@ -15,18 +15,19 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('parent_id')->default(0);
             $table->string('name')->unique();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('cover')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
 
-            // $table->foreign('product_id')
-            // ->references('id')->on('products')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+        });
 
+        Schema::table('categories', function (Blueprint $table) 
+        {
+            $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
