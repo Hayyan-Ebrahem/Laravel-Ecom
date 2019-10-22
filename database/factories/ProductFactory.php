@@ -15,7 +15,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'name' => $product,
         'description' => $faker->paragraph,
         'quantity' => $faker->randomDigitNotNull(1, 50),
-        'price' => $faker->randomDigitNotNull(1.00, 500.00),
         'active' => (bool)random_int(0,1),
         'brand_id' => function(){
             return Brand::all()->random();

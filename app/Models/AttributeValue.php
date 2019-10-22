@@ -4,7 +4,7 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OptionValue extends Model
+class AttributeValue extends Model
 {
     protected $fillable = [
         'value'
@@ -13,18 +13,18 @@ class OptionValue extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function option()
+    public function attribute()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Attribute::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function productOptions()
+    public function productAttributes()
     {
-        return $this->belongsToMany(ProductOption::class, 'product_option_option_values')
-        ->using('App\ProductOptionsOptionValues')
+        return $this->belongsToMany(ProductAttribute::class, 'product_attribute_attribute_values')
+        ->using('App\ProductAttributeAttributeValues')
         ->withPivot([
             'created_by',
             'updated_by',

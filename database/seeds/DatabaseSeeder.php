@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             BrandsTableSeeder::class,
             ProductsTableSeeder::class,
-            OptionsTableSeeder::class,
-            OptionValuesTableSeeder::class,
+            AttributesTableSeeder::class,
+            AttributeValuesTableSeeder::class,
             CategoryProductTableSeeder::class
         ]
     );

@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Option;
+use App\Models\Attribute;
 use Illuminate\Database\Seeder;
 
-class OptionsTableSeeder extends Seeder
+class AttributesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class OptionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Option::class, 4)->create();
+        factory(Attribute::class, 4)->create();
 
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductOption extends Model
+class ProductAttribute extends Model
 {
 
     /**
@@ -18,10 +18,10 @@ class ProductOption extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function optionsValues()
+    public function attributesValues()
     {
-        return $this->belongsToMany(OptionValues::class, 'product_option_option_values')
-        ->using('App\ProductOptionsOptionValues')
+        return $this->belongsToMany(AttributeValues::class, 'product_attribute_attribute_values')
+        ->using('App\ProductAttributeAttributeValues')
         ->withPivot([
             'created_by',
             'updated_by',

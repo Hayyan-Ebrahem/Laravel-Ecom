@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Option;
+use App\Models\Attribute;
 use Faker\Generator as Faker;
 
-$factory->define(Option::class, function (Faker $faker) {
+$factory->define(Attribute::class, function (Faker $faker) {
     $name = $faker->unique()->randomElement([
         'Color',
         'Size',

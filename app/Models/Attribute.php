@@ -4,7 +4,7 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+class Attribute extends Model
 {
     protected $fillable = [
         'name'
@@ -13,8 +13,8 @@ class Option extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function optionvalue()
+    public function attributevalue()
     {
-        return $this->hasMany(OptionValue::class);
+        return $this->hasMany(AttributeValue::class);
     }
 }

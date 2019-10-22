@@ -17,7 +17,6 @@ class Product extends Model
         'description',
         'cover',
         'quantity',
-        'price',
         'brand_id',
         'status',
         'mass_unit',
@@ -49,19 +48,19 @@ class Product extends Model
     }
 
   
-    public function options()
+    public function attributes()
     {
-        return $this->hasMany(ProductOptions::class);
+        return $this->hasMany(ProductAttribute::class);
     }
 
 
      /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function optionsValues()
+    public function attributesValues()
     {
-        return $this->belongsToMany(OptionValues::class, 'product_option_option_values')
-        ->using('App\ProductOptionsOptionValues')
+        return $this->belongsToMany(AttributeValues::class, 'product_attribute_attribute_values')
+        ->using('App\ProductAttributeAttributeValues')
         ->withPivot([
             'created_by',
             'updated_by',
