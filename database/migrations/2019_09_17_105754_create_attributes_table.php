@@ -15,8 +15,13 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('parent_id')->default(0);
             $table->string('name')->unique();
             $table->timestamps();
+        });
+        Schema::table('attributes', function (Blueprint $table) 
+        {
+            $table->foreign('parent_id')->references('id')->on('attributes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -6,20 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
-use App\Http\Resources\Specifications\Products\ProductSpecification;
 
 
 class ProductController extends Controller
 {
 
-    public function index(Request $request, ProductSpecification $ProductSpecification)
+    public function index(Request $request)
     {
 
-        $products = $ProductSpecification
-            ->include($request->includes)
-            // ->ids($request->ids)
-            ->get();
-
+        $products = Product::all();
         return new ProductCollection($products);
     }
 
