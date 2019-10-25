@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Api\Categories;
 use App\Http\Resources\Category\CategoryCollection;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Category\Repository\Interfaces\CategoryRepositoryInterface;
-// use App\Http\Resources\Product\ProductResource;
-// use App\Http\Resources\Specifications\Products\ProductSpecification;
 
 class CategoryController extends Controller
 {
-    // private $categoryRepo;
+    protected $categoryRepo;
 
-    // /**
-    //  * CategoryController constructor.
-    //  *
-    //  * @param CategoryRepositoryInterface $categoryRepository
-    //  */
+    /**
+     * CategoryController constructor.
+     *
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
     public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepo = $categoryRepository;
@@ -32,13 +29,8 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        // dd(get_class($this->categoryRepo));
-        $category = $this->categoryRepo->getRootCategories();
-            // $category = Category::all();
-            return new CategoryCollection($category);
-     
-
-        
+        $category = $this->categoryRepo->rootCategories();
+        return new CategoryCollection($category);       
     }
   
     /**
@@ -46,20 +38,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        return $this->categoryRepo->create($request->all());
     }
 
     /**
@@ -70,10 +51,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        // $category = Category
-        // $resource = new CategoryResource($category);
+        return $this->categoryRepo->show();
 
-        // return $resource;
     }
 
     /**

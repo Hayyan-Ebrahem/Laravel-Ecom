@@ -19,7 +19,7 @@ class CategoryResource extends JsonResource
     {
         $this->load('children');
         // $this->load('ancestors');
-        $this->load('products');
+        // $this->load('products');
 
         return [
             'id' => $this->id,

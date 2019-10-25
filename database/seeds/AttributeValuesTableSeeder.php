@@ -16,33 +16,33 @@ class AttributeValuesTableSeeder extends Seeder
         $size = Attribute::where(['name' => 'Size'])->first();
         factory(AttributeValue::class)->create([
             'value' => 'small',
-            'attribute_id' => $size->id
+            // 'attribute_id' => $size->id
         ]);
 
         factory(AttributeValue::class)->create([
             'value' => 'medium',
-            'attribute_id' => $size->id
+            // 'attribute_id' => $size->id
         ]);
 
         factory(AttributeValue::class)->create([
             'value' => 'large',
-            'attribute_id' => $size->id
+            // 'attribute_id' => $size->id
         ]);
 
         $color = Attribute::where(['name' => 'Color'])->first();
         factory(AttributeValue::class)->create([
             'value' => 'red',
-            'attribute_id' => $color->id
+            // 'attribute_id' => $color->id
         ]);
 
         factory(AttributeValue::class)->create([
             'value' => 'blue',
-            'attribute_id' => $color->id
+            // 'attribute_id' => $color->id
         ]);
 
         factory(AttributeValue::class)->create([
             'value' => 'green',
-            'attribute_id' => $color->id
+            // 'attribute_id' => $color->id
         ]);
 
 

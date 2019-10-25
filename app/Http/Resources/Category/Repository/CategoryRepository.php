@@ -6,8 +6,6 @@ use App\Http\Resources\BaseRepository;
 use App\Http\Resources\Category\Repository\Interfaces\CategoryRepositoryInterface;
 use App\Models\Category;
 
-// use App\Http\Resources\Category\Interface\CategoryInterface;
-
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
@@ -15,36 +13,40 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     /**
      * Categorycategory constructor.
      * @param Category $category
-    //  */
+    */
     public function __construct()
     {  
-        $this->category = Category::query();
+        $this->category = new Category;//Category::defaultOrder()->withDepth();
+
     }
-    
-    public function getRootCategories()
+
+    public function listCategories(string $order = 'id', string $sort = 'desc', $except = [])
     {
-        // dd(get_class($this->category));
-        return $this->category->descendantsAndSelf(2)->toTree();
-    
+        return $this->category->hasChildren()->get();
     }
 
-    // public function get()
-    // {
-    //     return $this->getTree();
-    // }
+    public function getCategoryTree($depth = 0)
+    {
+        return $this->category
+            ->withCount('products')
+            ->defaultOrder()
+            ->withDepth()
+            ->having('depth', '<=', $depth)
+            ->get()
+            ->toTree();
+    }
+    public function rootCategories(string $order = 'id', string $sort = 'desc', $except = []) 
+    {
+        // dd(get_class($this->category->orderBy($order, $sort)));
+        return $this->category->whereIsRoot()
+                        ->orderBy($order, $sort)
+                        ->get()
+                        ->except($except);
+    }
 
-    /**
-    //  * Get the results.
-    //  *
-    //  * @return \Illuminate\Support\Collection
-    //  */
-    // public function depth()
-    // {
-    //     return $this->tree ? $this->getTree() : $this->get();
-    // }
-
-    // public function create()
-    // {
-    //     return $this->toTree();
-    // }
+    public function create(array $data)
+    {
+    
+        return $this->category->create($data);
+    }
 }
