@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
-    // Route::post('login', 'Api\AuthController@login');
-    // Route::post('register', 'Api\AuthController@register');
-    // Route::post('logout', 'Api\AuthController@logout');
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('register', 'Api\AuthController@register');
+    Route::post('logout', 'Api\AuthController@logout');
 
 
     Route::namespace('Api\Products')->group(function () {

@@ -9,10 +9,24 @@ class Category extends Model
 {
     use NodeTrait;
     
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'cover',
+        'status',
+        'parent_id'
+    ];
+    
     public function products()
     {
         return $this->belongsToMany(Product::class, 'category_product')
-            ->using('CategoryProduct');
+            ->using('App\Models\CategoryProduct');
     }
 
     // public function parent()
