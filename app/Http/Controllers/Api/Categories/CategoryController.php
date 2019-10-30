@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\Categories;
+
 use App\Http\Resources\Category\CategoryCollection;
 
 use Illuminate\Http\Request;
@@ -29,10 +30,13 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $category = $this->categoryRepo->rootCategories();
-        return new CategoryCollection($category);       
+        // dd($this->categoryRepo);
+        $category = $this->categoryRepo
+            ->getCategoryTree();
+
+        return new CategoryCollection($category);
     }
-  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +44,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->categoryRepo->create($request->all());
+        return $this->categoryRepo->listCategories();
     }
 
     /**
@@ -52,7 +56,6 @@ class CategoryController extends Controller
     public function show($id)
     {
         return $this->categoryRepo->show();
-
     }
 
     /**
