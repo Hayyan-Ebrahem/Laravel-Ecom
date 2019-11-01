@@ -30,7 +30,6 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($this->categoryRepo);
         $category = $this->categoryRepo
             ->getCategoryTree();
 

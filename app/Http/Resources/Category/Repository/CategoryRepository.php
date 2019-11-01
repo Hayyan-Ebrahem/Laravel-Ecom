@@ -20,29 +20,28 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {   
 
         $includes = $this->include($request->includes);
-        $this->category = Category::with($this->includes); //Category::defaultOrder()->withDepth();
+        $this->category = Category::with($this->includes ? : []); //Category::defaultOrder()->withDepth();
 
     }
 
-    public function listCategories(string $order = 'id', string $sort = 'desc', $except = [])
+    public function getCategories(string $order = 'id', string $sort = 'desc', $except = [])
     {
         // dd(get_class($this->ategory));
         return $this->category->hasChildren()->get();
     }
 
-    public function getCategoryTree($depth = 0)
+    public function getCategoryTree($depth = 3)
     {
         return $this->category
-            ->withCount('products')
             ->defaultOrder()
             ->withDepth()
             ->having('depth', '<=', $depth)
-            ->get()
-            ->toTree();
+            ->get();
+        
     }
+    
     public function rootCategories(string $order = 'id', string $sort = 'desc', $except = [])
     {
-        // dd(get_class($this->category->orderBy($order, $sort)));
         return $this->category->whereIsRoot()
             ->orderBy($order, $sort)
             ->get()
@@ -53,7 +52,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $category = $this->category;
         $category->name = $data['name'];
-        $category->parent_id = $data['parent_id'];
+        $category->parent_id = $data['parent_id'] ? : 0;
         $category->save();
 
         // If a parent_id exists then add the category to the parent

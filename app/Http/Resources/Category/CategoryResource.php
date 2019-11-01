@@ -19,12 +19,14 @@ class CategoryResource extends JsonResource
     {
         $this->load('children');
         // $this->load('ancestors');
-        // $this->load('products');
+        $this->load('products');
 
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // 'children' => new CategoryCollection($this->whenLoaded('children')),
+            'products_count' => $this->products->count(),
+            'children_count' => $this->children->count(),
+            'children' => new CategoryCollection($this->whenLoaded('children')),
             // 'ancestors' => new CategoryCollection($this->whenLoaded('ancestors')),
             // 'attributes' => new AttributeCollection($this->whenLoaded('attributes')),
             'products' => new ProductCollection($this->whenLoaded('products')),

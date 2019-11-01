@@ -24,6 +24,7 @@ class AuthController extends Controller
                 'c_password' => 'required|same:password',
             ]
         );
+        // dd('sssssssss');
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
@@ -37,13 +38,15 @@ class AuthController extends Controller
 
     public function login()
     {
-        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
-            $user = Auth::user();
-            $success['token'] =  $user->createToken(request('client'))->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
-        } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
-        }
+        // if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        //     $user = Auth::user();
+        //     dd($user);
+        //     // $success['token'] =  $user->createToken(request('client'))->accessToken;
+        //     return response()->json(['success' => $success], $this->successStatus);
+        // } else {
+
+        //     return response()->json(['error' => 'vvvvvvvvvUnauthorised'], 401);
+        // }
     }
 
     public function logout (Request $request) {
