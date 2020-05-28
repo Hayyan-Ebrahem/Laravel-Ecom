@@ -26,11 +26,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function getCategories(string $order = 'id', string $sort = 'desc', $except = [])
     {
-        // dd(get_class($this->ategory));
+        // dd(get_class($this->category));
         return $this->category->hasChildren()->get();
     }
 
-    public function getCategoryTree($depth = 3)
+    public function getCategoryTree($depth=3)
     {
         return $this->category
             ->defaultOrder()
